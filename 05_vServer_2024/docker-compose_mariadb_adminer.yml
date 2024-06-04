@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  mariadb_server:
+    restart: always
+    container_name: mariadb
+    image: mariadb:latest
+    environment:
+      MARIADB_ROOT_PASSWORD: test
+      MARIADB_DATABASE: magicstuff
+      MARIADB_USER: pixeledi
+      MARIADB_PASSWORD: test
+    ports:
+      - 3306:3306
+    networks:
+      - adminer-network
+
+  adminer:
+    restart: always
+    container_name: adminer
+    image: adminer
+    ports:
+      - 8080:8080
+    environment:
+      ADMINER_DEFAULT_SERVER: mariadb_server
+    depends_on:
+      - mariadb_server
+    networks:
+      - adminer-network
+
+networks:
+  adminer-network:
