@@ -1,0 +1,31 @@
+<circuit version="1.0.0-SR1" rev="1402" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
+
+<item itemtype="Voltage Source" CircId="Voltage Source-1" mainComp="false" ShowProp="MaxValue" Show_id="false" Show_Val="true" Pos="676,440" rotation="0" hflip="1" vflip="1" label="Voltage Source-1" idLabPos="-32,-48" labelrot="0" valLabPos="-7,30" valLabRot="0" Running="true" Value_Volt="6.97 V" MaxValue="10 V" />
+
+<item itemtype="Resistor" CircId="Resistor-2" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="756,456" rotation="0" hflip="1" vflip="1" label="Resistor-2" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="10 kΩ" />
+
+<item itemtype="Zener" CircId="Zener-3" mainComp="false" Show_id="false" Show_Val="false" Pos="808,496" rotation="-90" hflip="1" vflip="1" label="Zener-3" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Model="Zener Default" Threshold="0.634767 V" MaxCurrent="1 A" Resistance="0.05 Ω" BrkDownV="5.6 V" SatCurrent="171.435 nA" EmCoef="2" />
+
+<item itemtype="Ground" CircId="Ground-7" mainComp="false" Show_id="false" Show_Val="false" Pos="808,544" rotation="0" hflip="1" vflip="1" label="Ground-7" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Voltimeter" CircId="Voltimeter-9" mainComp="false" Show_id="false" Show_Val="false" Pos="848,416" rotation="0" hflip="1" vflip="1" label="Voltimeter-9" idLabPos="-24,-40" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Node" CircId="Node-11" mainComp="false" Pos="808,476" />
+
+<item itemtype="Node" CircId="Node-14" mainComp="false" Pos="808,524" />
+
+<item itemtype="Connector" uid="connector-15" startpinid="Voltage Source-1-outPin" endpinid="Resistor-2-lPin" pointList="704,456,740,456" />
+
+<item itemtype="Connector" uid="connector-16" startpinid="Resistor-2-rPin" endpinid="Node-11-0" pointList="772,456,808,456,808,476" />
+
+<item itemtype="Connector" uid="connector-17" startpinid="Zener-3-lPin" endpinid="Node-14-0" pointList="808,512,808,524" />
+
+<item itemtype="Connector" uid="connector-18" startpinid="Voltimeter-9-lPin" endpinid="Node-11-1" pointList="840,432,840,476,808,476" />
+
+<item itemtype="Connector" uid="connector-19" startpinid="Node-11-2" endpinid="Zener-3-rPin" pointList="808,476,808,480" />
+
+<item itemtype="Connector" uid="connector-20" startpinid="Voltimeter-9-rPin" endpinid="Node-14-1" pointList="856,432,856,524,808,524" />
+
+<item itemtype="Connector" uid="connector-21" startpinid="Node-14-2" endpinid="Ground-7-Gnd" pointList="808,524,808,528" />
+
+</circuit>
