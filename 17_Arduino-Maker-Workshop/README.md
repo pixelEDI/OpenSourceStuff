@@ -4,4 +4,4 @@ Video: https://www.youtube.com/@pixeledi
 
 ## Links zum Projekt
 - Github: https://github.com/thelastoutpostworkshop/arduino-maker-workshop
-- Vorstellung: https://www.youtube.com/watch?v=rduTUUVkzqM
+- Origianl-Vorstellung: https://www.youtube.com/watch?v=rduTUUVkzqM
