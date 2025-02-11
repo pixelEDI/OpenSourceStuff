@@ -1,0 +1,298 @@
+[
+    {
+        "id": "25fe7e705517cd27",
+        "type": "tab",
+        "label": "API_Token",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ea2bce0800a998ef",
+        "type": "inject",
+        "z": "25fe7e705517cd27",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 340,
+        "y": 220,
+        "wires": [
+            [
+                "02e441abeedb83dc"
+            ]
+        ]
+    },
+    {
+        "id": "6c42721b519359d3",
+        "type": "function",
+        "z": "25fe7e705517cd27",
+        "name": "function 3",
+        "func": "msg.topic=`\nSELECT * FROM iot_sensors\nORDER BY timestamp DESC\nLIMIT 1\n`\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 200,
+        "wires": [
+            [
+                "baaaf8d832ddd7c6"
+            ]
+        ]
+    },
+    {
+        "id": "baaaf8d832ddd7c6",
+        "type": "mysql",
+        "z": "25fe7e705517cd27",
+        "mydb": "dedeba7a43626f5e",
+        "name": "",
+        "x": 870,
+        "y": 200,
+        "wires": [
+            [
+                "d661d729ce4cea21",
+                "d66046c20bbcd080"
+            ]
+        ]
+    },
+    {
+        "id": "d661d729ce4cea21",
+        "type": "debug",
+        "z": "25fe7e705517cd27",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1040,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "73e8e99781693ced",
+        "type": "http in",
+        "z": "25fe7e705517cd27",
+        "name": "",
+        "url": "/myfancyendpoint",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 300,
+        "y": 180,
+        "wires": [
+            [
+                "02e441abeedb83dc"
+            ]
+        ]
+    },
+    {
+        "id": "d66046c20bbcd080",
+        "type": "http response",
+        "z": "25fe7e705517cd27",
+        "name": "",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1040,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "caa2b7a207c60161",
+        "type": "comment",
+        "z": "25fe7e705517cd27",
+        "name": "oPdA0IjqKHFp82wnEBeYPEKatypNjnJNcM2JwVf2hQ8=",
+        "info": "",
+        "x": 410,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "be0f788d4fb578d8",
+        "type": "function",
+        "z": "25fe7e705517cd27",
+        "name": "function 4",
+        "func": "var authHeader = msg.req.headers['authorization'];\n\nif (authHeader && authHeader.startsWith('Bearer ')) {\n    var token = authHeader.slice(7); \n    var validToken =\"oPdA0IjqKHFp82wnEBeYPEKatypNjnJNcM2JwVf2hQ8=\"\n\n    if(token == validToken){\n        msg.token = \"valid\";\n    }else {\n        msg.token = \"invalid\";\n    }\n} else {\n    msg.token=\"missing\"\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 440,
+        "wires": [
+            [
+                "257f09cf5646d173"
+            ]
+        ]
+    },
+    {
+        "id": "257f09cf5646d173",
+        "type": "switch",
+        "z": "25fe7e705517cd27",
+        "name": "",
+        "property": "token",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "valid",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "invalid",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "missing",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 610,
+        "y": 440,
+        "wires": [
+            [
+                "36960cd6f299addc"
+            ],
+            [
+                "c3efa54b99f06780",
+                "60ee5e2a2262619f"
+            ],
+            [
+                "07a516f09da5645b",
+                "cf39fd9b08038db0"
+            ]
+        ]
+    },
+    {
+        "id": "c3efa54b99f06780",
+        "type": "http response",
+        "z": "25fe7e705517cd27",
+        "name": "",
+        "statusCode": "400",
+        "headers": {},
+        "x": 800,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "07a516f09da5645b",
+        "type": "http response",
+        "z": "25fe7e705517cd27",
+        "name": "",
+        "statusCode": "401",
+        "headers": {},
+        "x": 800,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "60ee5e2a2262619f",
+        "type": "debug",
+        "z": "25fe7e705517cd27",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 800,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "cf39fd9b08038db0",
+        "type": "debug",
+        "z": "25fe7e705517cd27",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 800,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "02e441abeedb83dc",
+        "type": "link call",
+        "z": "25fe7e705517cd27",
+        "name": "check token",
+        "links": [
+            "ae085e50c6b43f26"
+        ],
+        "linkType": "static",
+        "timeout": "1",
+        "x": 530,
+        "y": 200,
+        "wires": [
+            [
+                "6c42721b519359d3"
+            ]
+        ]
+    },
+    {
+        "id": "ae085e50c6b43f26",
+        "type": "link in",
+        "z": "25fe7e705517cd27",
+        "name": "check_token_in",
+        "links": [],
+        "x": 375,
+        "y": 440,
+        "wires": [
+            [
+                "be0f788d4fb578d8"
+            ]
+        ]
+    },
+    {
+        "id": "36960cd6f299addc",
+        "type": "link out",
+        "z": "25fe7e705517cd27",
+        "name": "link out 1",
+        "mode": "return",
+        "links": [],
+        "x": 755,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "dedeba7a43626f5e",
+        "type": "MySQLdatabase",
+        "name": "",
+        "host": "65.21.105.35",
+        "port": "3306",
+        "db": "magicstuff",
+        "tz": "",
+        "charset": "UTF8"
+    }
+]
