@@ -1,0 +1,68 @@
+[
+    {
+        "id": "1008da46246ec6c4",
+        "type": "function",
+        "z": "2f8ff7359f08c487",
+        "name": "zugriff .env",
+        "func": "\nmsg.mykeys = {\n    key: env.get(\"MYSPECIALTOKEN\"),\n    key2: \"hierstehtauchwasdrin\"\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 160,
+        "wires": [
+            [
+                "4f89307d47ff6e4b"
+            ]
+        ]
+    },
+    {
+        "id": "05292dbb62c3d48c",
+        "type": "inject",
+        "z": "2f8ff7359f08c487",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 160,
+        "wires": [
+            [
+                "1008da46246ec6c4"
+            ]
+        ]
+    },
+    {
+        "id": "4f89307d47ff6e4b",
+        "type": "debug",
+        "z": "2f8ff7359f08c487",
+        "name": "debug 23",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "mykeys",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 160,
+        "wires": []
+    }
+]
