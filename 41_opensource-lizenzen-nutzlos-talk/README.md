@@ -1,6 +1,0 @@
-- https://asahilinux.org/2026/11/progress-report-7-3/
-- https://opensource.org/license/mit
-- https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
-- https://github.com/AsahiLinux/m1n1/commit/ce2b8a43cea4220b602af1005dc9dbfc59c9624e
-- https://github.com/AsahiLinux/m1n1/releases/tag/v1.9.9
-- https://arstechnica.com/ai/2026/03/ai-can-rewrite-open-source-code-but-can-it-rewrite-the-license-too/
